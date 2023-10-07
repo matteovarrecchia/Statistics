@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 1 - Matteo Varrecchia</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #dddfce; 
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="myCanvas" width="450" height="350"></canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+
+        // Add name
+        context.font = "20px Arial";
+        context.fillStyle = "black";
+        context.fillText("Homework 1 ", 20, 30);
+
+        // Circle
+        var centerX = canvas.width / 2;
+        var centerY = 80; // Align to center
+        var radius = 30;
+
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = "red";
+        context.fill();
+        context.closePath();
+
+        // Line
+        var lineY = centerY + radius * 2 + 20;
+        context.beginPath();
+        context.moveTo(20, lineY);
+        context.lineTo(canvas.width - 20, lineY);
+        context.strokeStyle = "blue";
+        context.stroke();
+        context.closePath();
+
+        // Point
+        var pointY = lineY + 30;
+        context.beginPath();
+        context.arc(canvas.width / 2, pointY, 3, 0, 2 * Math.PI, false);
+        context.fillStyle = "green";
+        context.fill();
+        context.closePath();
+
+        // Rectangle
+        var rectY = pointY + 50;
+        context.beginPath();
+        context.rect(20, rectY, canvas.width - 40, 30);
+        context.strokeStyle = "brown";
+        context.stroke();
+        context.closePath();
+
+        // Realized by
+        var realizedByText = "Realized by Matteo Varrecchia";
+        var realizedByWidth = context.measureText(realizedByText).width;
+        var realizedByX = (canvas.width - realizedByWidth) / 2;
+        var realizedByY = rectY + 80; 
+
+        context.font = "15px Arial";
+        context.fillStyle = "black";
+        context.fillText(realizedByText, realizedByX, realizedByY);
+    </script>
+</body>
+</html>
