@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequency Calculation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Result Frequency</h2>
+
+    <input type="file" id="csvFile" accept=".csv">
+    <button onclick="loadCSV()">Generate</button>
+
+    <script>
+        // Function to load the CSV file
+        function loadCSV() {
+            var fileInput = document.getElementById('csvFile');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var csvData = e.target.result;
+                    Papa.parse(csvData, {
+                        complete: function (results) {
+                            calculateFrequencies(results.data.slice(1)); // Exclude the first row
+                        }
+                    });
+                };
+
+                reader.readAsText(file);
+            } else {
+                alert('Select a CSV file.');
+            }
+        }
+
+        // Function to calculate frequencies
+        function calculateFrequencies(data) {
+            // Initialize objects for frequencies
+            var ageFrequency = {};
+            var hobbiesFrequency = {};
+            var heightFrequency = {};
+
+            // Calculate frequencies for age, hobbies, and height
+            data.forEach(function (row) {
+                // Age
+                var age = row[0];
+                ageFrequency[age] = (ageFrequency[age] || 0) + 1;
+
+                // Hobbies
+                var hobbies = row[1];
+                hobbiesFrequency[hobbies] = (hobbiesFrequency[hobbies] || 0) + 1;
+
+                // Height: consider only numeric values
+                var height = parseFloat(row[2]);
+                if (!isNaN(height)) {
+                    heightFrequency[height] = (heightFrequency[height] || 0) + 1;
+                }
+            });
+
+            // Display the results in a table
+            displayTable(ageFrequency, 'Age');
+            displayTable(hobbiesFrequency, 'Main Hobbies');
+            displayTable(heightFrequency, 'Height');
+        }
+
+        // Function to display results in a table
+        function displayTable(frequencies, variable) {
+            var table = '<h3>' + variable + '</h3>';
+            table += '<table>';
+            table += '<tr><th>Value</th><th>Absolute Frequency</th><th>Relative Frequency</th><th>Percentage</th></tr>';
+
+            var total = Object.values(frequencies).reduce((acc, val) => acc + val, 0);
+
+            Object.entries(frequencies).forEach(function ([key, value]) {
+                var relativeFrequency = value / total;
+                var percentage = (relativeFrequency * 100).toFixed(2) + '%';
+
+                table += '<tr><td>' + key + '</td><td>' + value + '</td><td>' + relativeFrequency.toFixed(2) + '</td><td>' + percentage + '</td></tr>';
+            });
+
+            table += '</table>';
+            document.body.innerHTML += table;
+        }
+    </script>
+
+</body>
+</html>
