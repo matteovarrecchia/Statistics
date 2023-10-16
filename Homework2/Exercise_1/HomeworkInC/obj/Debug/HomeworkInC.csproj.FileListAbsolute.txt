@@ -1,0 +1,10 @@
+C:\Users\Matteo\source\repos\HomeworkInC\obj\Debug\HomeworkInC.csproj.AssemblyReference.cache
+C:\Users\Matteo\source\repos\HomeworkInC\obj\Debug\HomeworkInC.Properties.Resources.resources
+C:\Users\Matteo\source\repos\HomeworkInC\obj\Debug\HomeworkInC.csproj.GenerateResource.cache
+C:\Users\Matteo\source\repos\HomeworkInC\obj\Debug\HomeworkInC.csproj.CoreCompileInputs.cache
+C:\Users\Matteo\source\repos\HomeworkInC\bin\Debug\HomeworkInC.exe.config
+C:\Users\Matteo\source\repos\HomeworkInC\bin\Debug\HomeworkInC.exe
+C:\Users\Matteo\source\repos\HomeworkInC\bin\Debug\HomeworkInC.pdb
+C:\Users\Matteo\source\repos\HomeworkInC\obj\Debug\HomeworkInC.Form1.resources
+C:\Users\Matteo\source\repos\HomeworkInC\obj\Debug\HomeworkInC.exe
+C:\Users\Matteo\source\repos\HomeworkInC\obj\Debug\HomeworkInC.pdb
